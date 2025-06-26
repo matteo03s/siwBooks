@@ -1,14 +1,3 @@
--- Iniziamo popolando la tabella Ingrediente
---INSERT INTO ingrediente (nome, prezzo, url_image) VALUES ('Pomodoro', 0.50, 'images/pomodoro.png');
---INSERT INTO ingrediente (nome, prezzo, url_image) VALUES ('Mozzarella', 1.00, 'images/mozzarella.png');
---INSERT INTO ingrediente (nome, prezzo, url_image) VALUES ('Prosciutto', 1.50, 'images/prosciutto.png');
---INSERT INTO ingrediente (nome, prezzo, url_image) VALUES ('Funghi', 0.75, 'images/funghi.png');
---INSERT INTO ingrediente (nome, prezzo, url_image) VALUES ('Olive', 0.30, 'images/olive.png');
--- Successivamente, popoliamo la tabella Pizza
--- Assumiamo che i nuovi ID delle pizze siano generati automaticamente, quindi non li includiamo nella query
--- Per associare le pizze agli ingredienti, dovrai fare riferimento agli ID degli ingredienti (ad esempio, ingredienti_id)
-
-
 --Inserisci l'admin username=gestore pw=pwadmin
 INSERT INTO credenziali (username, password, ruolo) VALUES ('gestore', '$2a$10$JOX7nLjPEbvs/iUIp9D0b.S7MLOfKtsn1yzUr2ZsRgwN1d60v7SCa', 'ADMIN');
 --Inserisci un utente base username=utente pw=utente
@@ -36,12 +25,20 @@ INSERT INTO autore (nome, cognome, data_nascita, data_morte, nazione) VALUES ('I
 INSERT INTO autore (nome, cognome, data_nascita, data_morte, nazione) VALUES ('Haruki', 'Murakami', '1949-01-12', NULL, 'Giappone');
 
 -- Inserimento in Libro
-INSERT INTO libro (titolo, anno, trama) VALUES ('I Promessi Sposi', 1840, 'La storia di Renzo e Lucia, ambientata in Lombardia durante il dominio spagnolo.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Orgoglio e Pregiudizio', 1813, 'Una storia d''amore e di conflitti sociali tra Elizabeth Bennet e Mr. Darcy.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Cent''anni di solitudine', 1967, 'La saga della famiglia Buendía in un villaggio immaginario, Macondo.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Mrs Dalloway', 1925, 'Una giornata nella vita di Clarissa Dalloway, tra introspezione e vita londinese.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Il barone rampante', 1957, 'La storia di Cosimo, che vive sugli alberi per ribellarsi alla società.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Norwegian Wood', 1987, 'Un romanzo di formazione che esplora amore e perdita nella Tokyo degli anni 60');
+--INSERT INTO libro (titolo, anno, trama) VALUES ('I Promessi Sposi', 1840, 'La storia di Renzo e Lucia, ambientata in Lombardia durante il dominio spagnolo.');
+--INSERT INTO libro (titolo, anno, trama) VALUES ('Orgoglio e Pregiudizio', 1813, 'Una storia d''amore e di conflitti sociali tra Elizabeth Bennet e Mr. Darcy.');
+--INSERT INTO libro (titolo, anno, trama) VALUES ('Cent''anni di solitudine', 1967, 'La saga della famiglia Buendía in un villaggio immaginario, Macondo.');
+--INSERT INTO libro (titolo, anno, trama) VALUES ('Mrs Dalloway', 1925, 'Una giornata nella vita di Clarissa Dalloway, tra introspezione e vita londinese.');
+--INSERT INTO libro (titolo, anno, trama) VALUES ('Il barone rampante', 1957, 'La storia di Cosimo, che vive sugli alberi per ribellarsi alla società.');
+--INSERT INTO libro (titolo, anno, trama) VALUES ('Norwegian Wood', 1987, 'Un romanzo di formazione che esplora amore e perdita nella Tokyo degli anni 60');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('I Promessi Sposi', 1840, 'Romanzo storico', 'La storia di Renzo e Lucia, ambientata in Lombardia durante il dominio spagnolo.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Orgoglio e Pregiudizio', 1813, 'Romanzo rosa', 'Una storia d''amore e di conflitti sociali tra Elizabeth Bennet e Mr. Darcy.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Cent''anni di solitudine', 1967, 'Realismo magico', 'La saga della famiglia Buendía in un villaggio immaginario, Macondo.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Mrs Dalloway', 1925, 'Romanzo modernista', 'Una giornata nella vita di Clarissa Dalloway, tra introspezione e vita londinese.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Il barone rampante', 1957, 'Romanzo filosofico', 'La storia di Cosimo, che vive sugli alberi per ribellarsi alla società.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Norwegian Wood', 1987, 'Narrativa contemporanea', 'Un romanzo di formazione che esplora amore e perdita nella Tokyo degli anni 60.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Il nome della rosa', 1980, 'Giallo storico', 'Un giallo storico ambientato in un monastero medievale, tra misteri e inquisizione.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('1984', 1949, 'Distopico', 'Una distopia che racconta di un regime totalitario che controlla ogni aspetto della vita.');
 
 
 -- Inserimento nella tabella di relazione many-to-many tra Libro e Autore (libro_autori)
@@ -54,10 +51,10 @@ INSERT INTO autore_libri (libri_id, autori_id) VALUES (6, 6); -- Norwegian Wood 
 INSERT INTO autore_libri (libri_id, autori_id) VALUES (1, 5); -- I Promessi Sposi di Alessandro Manzoni e Italo Calvino (esempio ipotetico)
 
 -- Inserimento in Immagine, con riferimento a Libro e Autore
-INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('copertina_promessi_sposi.jpg', 'image/jpeg'); -- Immagine per il libro
-INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('copertina_orgoglio_pregiudizio.jpg', 'image/jpeg');
-INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('ritratto_manzoni.jpg', 'image/jpeg', 0x00); -- Immagine per l'autore
-INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('ritratto_austen.jpg', 'image/jpeg', 0x00);
+--INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('copertina_promessi_sposi.jpg', 'image/jpeg'); -- Immagine per il libro
+--INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('copertina_orgoglio_pregiudizio.jpg', 'image/jpeg');
+--INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('ritratto_manzoni.jpg', 'image/jpeg', 0x00); -- Immagine per l'autore
+--INSERT INTO immagine (nome_file, tipo_contenuto, dati) VALUES ('ritratto_austen.jpg', 'image/jpeg', 0x00);
 
 -- Inserimento in Recensione, con riferimento a Libro e Utente
 INSERT INTO recensione (titolo, voto, testo, data, libro_id, utente_id) VALUES ('Capolavoro italiano', 5, 'Un romanzo storico avvincente e ben scritto.', '2025-06-01', 1, 1);
@@ -68,7 +65,7 @@ INSERT INTO recensione (titolo, voto, testo, data, libro_id, utente_id) VALUES (
 INSERT INTO recensione (titolo, voto, testo, data, libro_id, utente_id) VALUES ('Emozionante e nostalgico', 5, 'Un libro che tocca il cuore con la sua semplicità.', '2025-06-06', 6, 1);
 
 --inserisci i libri
-INSERT INTO libro (titolo, anno, trama) VALUES ('1984', 1949, 'Dolce al cucchiaio a base di panna, zucchero e vaniglia, servito con frutti di bosco.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Frutta Fresca', 1990, 'Mix di frutta fresca di stagione, leggera e dissetante.');
-INSERT INTO libro (titolo, anno, trama) VALUES ('Crostata di Marmellata', 2000, 'Pasta frolla ripiena di marmellata di frutta, croccante e gustosa.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('1914', 1949, 'dolce', 'Dolce al cucchiaio a base di panna, zucchero e vaniglia, servito con frutti di bosco.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Frutta Fresca', 1990, 'dolce', 'Mix di frutta fresca di stagione, leggera e dissetante.');
+INSERT INTO libro (titolo, anno, genere, trama) VALUES ('Crostata di Marmellata', 2000, 'dolce', 'Pasta frolla ripiena di marmellata di frutta, croccante e gustosa.');
 

@@ -24,7 +24,7 @@
 			
 			<span class="lab"><strong>Libri:</strong></span>
 			<div th:each="libro: ${autore.libri}">
-				<p th:text="${libro.titolo} + ' (' + ${libro.anno} + ')'">Libro</p>
+				<p><a class="titolo" th:href="@{'/libro/' + ${libro.id}}" th:text="${libro.titolo} + ' (' + ${libro.anno} + ')'">Libro</p>
 			</div>
 			
 			<hr>

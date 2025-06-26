@@ -55,7 +55,6 @@ public class LibroController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
 			model.addAttribute("libri", this.libroService.getAllLibri());
-//			model.addAttribute("tipologia", new String ("prodotti"));
 			return "libro/libri.html";
 		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -65,7 +64,6 @@ public class LibroController {
 			return "redirect:/admin/modificaLibri";
 		}
 		model.addAttribute("libri", this.libroService.getAllLibri());
-//		model.addAttribute("tipologia", new String ("prodotti"));
 		return "libro/libri.html";
 	}
 	@Transactional
@@ -99,10 +97,12 @@ public class LibroController {
         			if (l.getTitolo().toLowerCase().contains(filtro.toLowerCase()))
         				libri.add(l);
         		}
-//        		else if (tipoRicerca.equals("genere")) {
-//        			if (l.getGenere().toLowerCase().contains(filtro.toLowerCase()))
-//        				libri.add(l);
-//        		}
+        		
+        		else if (tipoRicerca.equals("genere")) {
+        			if (l.getGenere().toLowerCase().contains(filtro.toLowerCase()))
+        				libri.add(l);
+        		}
+        		
         		else {
         			for (Autore a: l.getAutori()) {
        					if (tipoRicerca.equals("nome") && 

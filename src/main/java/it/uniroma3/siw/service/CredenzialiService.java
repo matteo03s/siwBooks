@@ -1,6 +1,7 @@
 package it.uniroma3.siw.service;
 
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Credenziali;
+import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.repository.CredenzialiRepository;
 
 
@@ -57,18 +59,10 @@ public class CredenzialiService {
 		return this.credenzialiRepository.save(credenziali);
 	}
 	
-	//provo a modificare la funzione sopra
-	/*@Transactional 
-	public Credentials saveCredentials(Credentials credentials) {
-		
-		if(credentials.getRole().equals("azienda")){
-			credentials.setRole(Credentials.PROVIDER_ROLE);
-		}
-		
-		if(credentials.getRole().equals("utente")){
-			credentials.setRole(Credentials.DEFAULT_ROLE);
-		}
-		credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
-		return this.credentialsRepository.save(credentials);
-	}*/
+	public List <Credenziali> getOrdinatiUsernameAsc () {
+		return credenzialiRepository.findAllByOrderByUsernameAsc();
+	}
+	public List <Credenziali> getOrdinatiUsernameDesc () {
+		return credenzialiRepository.findAllByOrderByUsernameDesc();
+	}
 }

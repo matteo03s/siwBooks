@@ -30,6 +30,16 @@ public class Libro {
     @NotNull
 	private Integer anno;
 
+    private String genere;
+    
+	public String getGenere() {
+		return genere;
+	}
+
+	public void setGenere(String genere) {
+		this.genere = genere;
+	}
+
 	private String trama;
 
     @OneToMany(fetch = FetchType.EAGER)

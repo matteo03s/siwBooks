@@ -12,5 +12,7 @@ public interface CredenzialiRepository extends CrudRepository <Credenziali, Long
 	public Optional<Credenziali> findByUsername(String username);
 	public List <Credenziali> findByUtenteEmail (String email);
 	public List <Credenziali> findByUtenteNumeroTelefonico (String numero);
+	public List<Credenziali> findAllByOrderByUsernameAsc();
+	public List<Credenziali> findAllByOrderByUsernameDesc();
 
 }

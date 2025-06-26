@@ -151,3 +151,24 @@ a.titolo{
 	font-size: 1.3rem; /* Dimensione del font di 1.1rem */
 	font-weight: bold; /* Testo in grassetto */
 } 
+
+button { /* Seleziona gli elementi <button> all'interno di un elemento */
+    padding: 10px 20px; /* Aggiunge 10px di padding sopra/sotto e 20px a sinistra/destra */
+    margin: 10px 10px; /* Aggiunge 5px di margine sopra/sotto e 10px a sinistra/destra */
+    background-color: #b2724f; /* Imposta uno sfondo verde scuro per i bottoni */
+    color: white; /* Imposta il colore del testo a bianco */
+    border: none; /* Rimuove il bordo predefinito dei bottoni */
+    border-radius: 6px; /* Arrotonda gli angoli dei bottoni con un raggio di 6 pixel */
+    cursor: pointer; /* Cambia il cursore in un puntatore al passaggio del mouse */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Aggiunge transizioni fluide per colore di sfondo e trasformazione */
+	box-shadow: 0 0 7.5px 2.5px #b2724f; /* Ombra marcata su ogni lato */
+	font-size: 1.1rem; /* Imposta la dimensione del font a 1.1 volte la dimensione base */
+}
+button:hover { /* Seleziona i bottoni di #turno al passaggio del mouse */
+	background-color: rgb(152, 97, 67); /* Verde più scuro al passaggio del mouse */
+    transform: scale(1.1); /* Ingrandisce il bottone del 10% al passaggio del mouse */
+}
+
+button:active { /* Seleziona i bottoni di #turno quando vengono cliccati */
+    transform: scale(0.98); /* Riduce leggermente il bottone (2%) per un effetto di pressione */
+}

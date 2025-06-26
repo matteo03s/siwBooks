@@ -18,9 +18,12 @@
 			<p th:text="${libro.titolo}"></p>
 			<span class="lab"><strong>Anno:</strong> </span>
 			<p th:text="${libro.anno}"></p>
-<!--			<span class="lab"><strong>Genere:</strong> </span>
+
+			<span class="lab"><strong>Genere:</strong> </span>
 			<p th:text="${libro.genere}"></p>
--->			<span class="lab" th:if="${libro.trama}"><strong>Trama:</strong> </span>
+
+
+			<span class="lab" th:if="${libro.trama}"><strong>Trama:</strong> </span>
 			<p th:text="${libro.trama}"></p>
 			<hr>
 
@@ -81,13 +84,6 @@
 				</div>
 			</div>
 
-			<!-- divisione immagini libro 
-			<div th:if="${#lists.size(libro.immagini) > 0}">
-				<div th:each="immagine : ${libro.immagini}">
-					<img th:src="@{'/immagine/' + ${immagine.id}}" alt="Copertina di {{libro.titolo}}"
-						class="libro-img" />
-				</div>
-			</div>-->
 		</div>
 		<hr>
 		<span class="lab"><strong>Autori:</strong></span>
@@ -95,18 +91,12 @@
 			<p> <a class="titolo" th:href="@{'/autore/' + ${autore.id}}"
 					th:text="${autore.nome} + ' ' + ${autore.cognome}"> nome e cognome</a></p>
 		</div>
+		<hr>
+		<a th:href="@{'/libro/' + ${libro.id} + '/recensioni'}">
+			<button type="button">Visualizza le recensioni per questo libro</button>
+		</a>
 	</div>
-	<!-- divisione recensioni libro -->
-	<div id="recensione" th:if="${#lists.size(libro.recensioni) > 0}">
-		<div th:each="recensione : ${libro.recensioni}">
-			<p class="titolo"><span th:text="${recensione.titolo}"></span></p>
-			<p class="data"><strong>Recensione - Data:</strong> <span th:text="${recensione.data}"></span></p>
-			<p class="testo"><span th:text="${recensione.testo}"></span></p>
-			<p class="utente"><strong>Lasciata da:</strong> <span
-					th:text="${recensione.utente.credenziali.username}"></span></p>
-			<p class="voto"><strong>Voto:</strong> <span th:text="${recensione.voto}"></span></p>
-		</div>
-	</div>
+
 </body>
 
 </html>

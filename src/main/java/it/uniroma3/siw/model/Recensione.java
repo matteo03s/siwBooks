@@ -37,7 +37,7 @@ public class Recensione {
     
     private LocalDate data;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     private Libro libro;
 
     @ManyToOne (fetch = FetchType.LAZY)

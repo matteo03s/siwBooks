@@ -47,7 +47,7 @@ body {
 }
 
 .button {
-    background-color: rgba(68,93,50,255);
+    background-color: #b2724f;
     color: white;
     font-size: 18px;
     text-decoration: none;
@@ -61,7 +61,7 @@ body {
 }
 
 .button:hover {
-    background-color: rgba(68,93,50,255);
+    background-color: rgb(147, 92, 64);
     transform: scale(1.1); /* Leggera animazione di ingrandimento al passaggio del mouse */
 }
 

@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class RecensioneController {
 	@Autowired
 	private CredenzialiService credenzialiService;
 	
+	@Transactional
 	@GetMapping ("/recensione/recensioni")
 	public String getRecensioni (Model model, Principal principal) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -53,6 +55,7 @@ public class RecensioneController {
 	
 
 
+	@Transactional
 	@GetMapping("/recensione/ordinaRecensioni")
 	public String ordinaRecensioni (@RequestParam String ordine, @RequestParam String tipoRicerca, Model model, Principal principal) {
 	    List<Recensione> recensioni = new ArrayList<Recensione>();
@@ -95,6 +98,7 @@ public class RecensioneController {
 		return libri;
 	}
 	
+	@Transactional
 	@GetMapping ("/recensione/cercaLibri")
     public String filtraLibri (@RequestParam String filtro, @RequestParam String tipoRicerca, Model model, Principal principal) {
     	List <Libro> libri = new LinkedList<Libro>();
@@ -146,6 +150,7 @@ public class RecensioneController {
 	}
 	
 	/* creazione nuova recensione (con controllo se ce ne sono altre su quel libro) */
+	@Transactional
 	@PostMapping("/recensione/new")
     public String newRecensione(@Valid @ModelAttribute("recensione") Recensione recensione,
     							@RequestParam("libroId") Long libroId,
@@ -165,4 +170,42 @@ public class RecensioneController {
     	   return "recensione/nuovaRecensione.html";
        }
     }
+	
+	
+	@GetMapping ("/libro/{libroId}/recensioni")
+	public String getRecensioniLibro (@PathVariable("libroId") Long libroId, Model model) {
+		Libro libro = libroService.getLibroById(libroId);
+		model.addAttribute("libro", libro);
+		model.addAttribute("recensioni", libro.getRecensioni());
+		return "libro/recensioniLibro.html";
+	}
+	
+	@Transactional
+	@GetMapping("/libro/{libroId}/ordinaRecensioni")
+	public String ordinaRecensioni (@PathVariable("libroId") Long libroId, @RequestParam String ordine,
+									@RequestParam String tipoRicerca, Model model, Principal principal) {
+	    
+		List<Recensione> recensioni = new ArrayList<Recensione>();
+	    if (ordine.equals("voto")) {
+	    	if (tipoRicerca.equals("ascendente"))
+	    		recensioni.addAll(this.recensioneService.getOrdinatiVotoAsc());
+	    	else
+	    		recensioni.addAll(this.recensioneService.getOrdinatiVotoDesc());
+	    }
+	    else {
+	    	if (tipoRicerca.equals("ascendente"))
+	    		recensioni.addAll(this.recensioneService.getOrdinatiDataAsc());
+	    	else
+	    		recensioni.addAll(this.recensioneService.getOrdinatiDataDesc());
+	    }
+	    List<Recensione> giuste = new ArrayList<Recensione>();
+	    for(Recensione r: recensioni) {
+	    	if (r.getLibro().getId().equals(libroId))
+	    		giuste.add(r);
+	    }
+	    Libro libro = libroService.getLibroById(libroId);
+		model.addAttribute("libro", libro);
+	    model.addAttribute("recensioni", giuste);
+	    return "libro/recensioniLibro.html";
+	}
 }

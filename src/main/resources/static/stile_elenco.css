@@ -162,7 +162,7 @@ input[type="text"] {
 
 .oggetto-dettagli img {
     width: 90%; /* Larghezza fissa per tutte le immagini */
-    height: auto; /* Altezza fissa uguale alla larghezza per ottenere un quadrato */
+    aspect-ratio: 1 / 1; /* Forza il rapporto larghezza:altezza a 1:1 */
 	margin: 0 auto;
     border-radius: 5px; /* Mantieni gli angoli arrotondati */
     display: block; /* Mantieni l'immagine come elemento a blocco */

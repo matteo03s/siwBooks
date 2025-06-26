@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Autore;
+import it.uniroma3.siw.model.Credenziali;
 import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.model.Utente;
 import it.uniroma3.siw.repository.AutoreRepository;
 import it.uniroma3.siw.repository.LibroRepository;
 import it.uniroma3.siw.service.AutoreService;
+import it.uniroma3.siw.service.CredenzialiService;
 import it.uniroma3.siw.service.LibroService;
 import it.uniroma3.siw.service.RecensioneService;
 import it.uniroma3.siw.service.UtenteService;
@@ -39,6 +41,9 @@ public class AdminController {
 	private RecensioneService recensioneService;
 	@Autowired
 	private UtenteService utenteService;
+	@Autowired
+	private CredenzialiService credenzialiService;
+	
 
 /***********************************************************************************
  ***********************************SEZIONE LIBRO***********************************
@@ -96,10 +101,10 @@ public class AdminController {
         			if (l.getTitolo().toLowerCase().contains(filtro.toLowerCase()))
         				libri.add(l);
         		}
-//        		else if (tipoRicerca.equals("genere")) {
-//        			if (l.getGenere().toLowerCase().contains(filtro.toLowerCase()))
-//        				libri.add(l);
-//        		}
+        		else if (tipoRicerca.equals("genere")) {
+        			if (l.getGenere().toLowerCase().contains(filtro.toLowerCase()))
+        				libri.add(l);
+        		}
         		else {
         			for (Autore a: l.getAutori()) {
        					if (tipoRicerca.equals("nome") && 
@@ -171,11 +176,11 @@ public class AdminController {
             libroEsistente.setTrama(null); // Permette di azzerare la trama
         }
         
-//        if (libroForm.getGenere() != null && !libroForm.getGenere().trim().isEmpty()) {
-//            libroEsistente.setGenere(libroForm.getGenere());
-//        } else if (libroForm.getGenere() != null && libroForm.getGenere().trim().isEmpty()) {
-//            libroEsistente.setGenere(null); // Permette di azzerare il genere
-//        }
+        if (libroForm.getGenere() != null && !libroForm.getGenere().trim().isEmpty()) {
+            libroEsistente.setGenere(libroForm.getGenere());
+        } else if (libroForm.getGenere() != null && libroForm.getGenere().trim().isEmpty()) {
+            libroEsistente.setGenere(null); // Permette di azzerare il genere
+        }
         
         if (libroForm.getAnno() != null) {
             libroEsistente.setAnno(libroForm.getAnno());
@@ -391,7 +396,7 @@ public class AdminController {
 		model.addAttribute("recensioni", recensioneService.getAllRecensioni());
 		return "/admin/recensioni.html";
 	}
-	
+	@Transactional
 	@GetMapping("/admin/ordinaRecensioni")
 	public String ordinaRecensioni (@RequestParam String ordine, @RequestParam String tipoRicerca, Model model) {
 	    List<Recensione> recensioni = new ArrayList<Recensione>();
@@ -432,12 +437,19 @@ public class AdminController {
 ***********************************************************************************/
 	@GetMapping("/admin/ordinaUtenti")
 	public String ordinaUtenti (@RequestParam String ordine, @RequestParam String tipoRicerca, Model model) {
-	    List<Utente> utenti= new ArrayList<Utente>();
+	    List<Credenziali> tutti = new ArrayList<Credenziali>();
 	    if (ordine.equals("username")) {
 	    	if (tipoRicerca.equals("ascendente"))
-	    		utenti.addAll(this.utenteService.getOrdinatiUsernameAsc());
+	    		tutti.addAll(this.credenzialiService.getOrdinatiUsernameAsc());
 	    	else
-	    		utenti.addAll(this.utenteService.getOrdinatiUsernameDesc());
+	    		tutti.addAll(this.credenzialiService.getOrdinatiUsernameDesc());
+	    }
+	    List<Credenziali> giusti = credenzialiService.getAllNormali();
+	    List<Credenziali> utenti = new ArrayList<Credenziali>();
+	    for (Credenziali c: tutti) {
+	    	if (giusti.contains(c)) {
+	    		utenti.add(c);
+	    	}
 	    }
 	    model.addAttribute("utenti", utenti);
 	    return "admin/utenti.html";
