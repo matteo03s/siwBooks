@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Nuovo Autore</title>
+	<link rel="stylesheet" href="/stile_log.css">
+</head>
+
+<body>
+	<a id="logo" href="/"><img src="/logo.png" /></a>
+	<div class="form-container">
+
+		<!-- Usa th:object per associare il form all'oggetto autore -->
+		<form id="none" th:action="@{/admin/autore}" th:object="${autore}" method="POST">
+			<h1>Nuovo Autore</h1>
+			<label for="nome"><strong>Nome:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="text" id="nome" placeholder="Inserisci il nome dell'autore" th:field="${autore.nome}">
+			<span th:if="${#fields.hasErrors('nome')}" style="color:red" th:errors="*{nome}"></span>
+
+			<label for="cognome"><strong>Cognome:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="text" id="cognome" placeholder="Inserisci il cognome dell'autore" th:field="${autore.cognome}">
+			<span th:if="${#fields.hasErrors('cognome')}" style="color:red" th:errors="*{cognome}"></span>
+
+			<label for="nazione"><strong>Nazione:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="text" id="nazione" placeholder="Inserisci la nazione dell'autore" th:field="${autore.nazione}">
+
+			<label for="dataNascita"><strong>Data di nascita:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="date" id="dataNascita" placeholder="Inserisci la data di nascita dell'autore" th:field="${autore.dataNascita}">
+
+			<label for="dataMorte"><strong>Data di morte:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="date" id="dataMorte" placeholder="Inserisci la data di morte dell'autore" th:field="${autore.dataMorte}">
+
+
+			<div id="pulsanti">
+				<button type="submit">Salva modifiche</button>
+				<a href="/admin/modificaAutori"> <button id="annulla" type="button">Annulla</button></a>
+			</div>
+
+		</form>
+
+
+	</div>
+
+
+</body>
+
+</html>

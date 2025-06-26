@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Nuova Recensione</title>
+	<link rel="stylesheet" href="/stile_log.css" />
+</head>
+
+<body>
+	<a id="logo" href="/recensione/recensioni"><img src="/logo.png" /></a>
+	<div class="form-container">
+		<h1 th:text="'Nuova recensione per: ' + ${recensione.libro.titolo}"></h1>
+		<form th:action="@{/recensione/new}" method="POST" th:object="${recensione}">
+			<label for="titolo"><strong>Titolo:</strong></label>
+			<input required type="text" placeholder="Inserisci il titolo della recensione"
+				th:field="${recensione.titolo}" />
+			<span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
+			<label for="voto"><strong>Voto:</strong></label>
+			<input required type="number" min="1" max="5" placeholder="Inserisci il voto"
+				th:field="${recensione.voto}" />
+			<span th:if="${#fields.hasErrors('voto')}" th:errors="*{voto}"></span>
+			<label for="testo"><strong>Testo:</strong></label>
+			<textarea placeholder="Inserisci il testo della recensione" th:field="${recensione.testo}"></textarea>
+			<span th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></span>
+			<div class="error" th:if="${errorMessage}">
+				<p th:text="${errorMessage}"></p>
+			</div>
+			<div id="pulsanti">
+				<input type="hidden" name="libroId" th:value="${recensione.libro.id}" />
+				<button type="submit">Salva</button>
+				<a href="/recensione/recensioni"> <button id="annulla" type="button">Annulla</button></a>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

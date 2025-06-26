@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Errore 500</title>
+	<link rel="stylesheet" href="/stile_errore.css"/>
+</head>
+<body>
+    <h1>Errore 500</h1>
+	<div class="error" th:if="${errorMessage}">
+					<p th:text="${errorMessage}"></p>
+				</div>
+    <a class="button" href="/">Torna alla Home</a>
+</body>
+</html>

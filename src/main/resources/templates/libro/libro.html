@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<!--<title th:text="${libro.categoria}"></title>
+ -->
+	<link rel="stylesheet" href="/stile_singolo.css" />
+</head>
+
+<body>
+	<a id="logo" href="/libri"><img src="/logo.png" /></a>
+	<div class="contenitore">
+		<h1 th:text="${libro.titolo}"> Titolo libro</h1>
+		<!-- Dettagli del libro -->
+		<div class="dettagli">
+			<span class="lab"><strong>Titolo:</strong> </span>
+			<p th:text="${libro.titolo}"></p>
+			<span class="lab"><strong>Anno:</strong> </span>
+			<p th:text="${libro.anno}"></p>
+<!--			<span class="lab"><strong>Genere:</strong> </span>
+			<p th:text="${libro.genere}"></p>
+-->			<span class="lab" th:if="${libro.trama}"><strong>Trama:</strong> </span>
+			<p th:text="${libro.trama}"></p>
+			<hr>
+
+			<div th:if="${#lists.size(libro.immagini) > 0}" class="css-slider">
+				<!-- Radio buttons (uno per ogni immagine) -->
+				<input type="radio" name="slider" id="slide1" checked>
+				<input type="radio" name="slider" id="slide2" th:if="${#lists.size(libro.immagini) > 1}">
+				<input type="radio" name="slider" id="slide3" th:if="${#lists.size(libro.immagini) > 2}">
+				<input type="radio" name="slider" id="slide4" th:if="${#lists.size(libro.immagini) > 3}">
+				<input type="radio" name="slider" id="slide5" th:if="${#lists.size(libro.immagini) > 4}">
+
+				<div class="slides">
+					<!-- Primo -->
+					<div class="slide" th:if="${#lists.size(libro.immagini) > 0}">
+						<img th:src="@{'/immagine/' + ${libro.immagini[0].id}}" alt="Immagine 1" class="libro-img" />
+						<div class="controls">
+							<label for="slide5">←</label>
+							<label for="slide2">→</label>
+						</div>
+					</div>
+
+					<!-- Secondo -->
+					<div class="slide" th:if="${#lists.size(libro.immagini) > 1}">
+						<img th:src="@{'/immagine/' + ${libro.immagini[1].id}}" alt="Immagine 2" class="libro-img" />
+						<div class="controls">
+							<label for="slide1">←</label>
+							<label for="slide3">→</label>
+						</div>
+					</div>
+
+					<!-- Terzo -->
+					<div class="slide" th:if="${#lists.size(libro.immagini) > 2}">
+						<img th:src="@{'/immagine/' + ${libro.immagini[2].id}}" alt="Immagine 3" class="libro-img" />
+						<div class="controls">
+							<label for="slide2">←</label>
+							<label for="slide4">→</label>
+						</div>
+					</div>
+
+					<!-- Quarto -->
+					<div class="slide" th:if="${#lists.size(libro.immagini) > 3}">
+						<img th:src="@{'/immagine/' + ${libro.immagini[3].id}}" alt="Immagine 4" class="libro-img" />
+						<div class="controls">
+							<label for="slide3">←</label>
+							<label for="slide5">→</label>
+						</div>
+					</div>
+
+					<!-- Quinto -->
+					<div class="slide" th:if="${#lists.size(libro.immagini) > 4}">
+						<img th:src="@{'/immagine/' + ${libro.immagini[4].id}}" alt="Immagine 5" class="libro-img" />
+						<div class="controls">
+							<label for="slide4">←</label>
+							<label for="slide1">→</label>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- divisione immagini libro 
+			<div th:if="${#lists.size(libro.immagini) > 0}">
+				<div th:each="immagine : ${libro.immagini}">
+					<img th:src="@{'/immagine/' + ${immagine.id}}" alt="Copertina di {{libro.titolo}}"
+						class="libro-img" />
+				</div>
+			</div>-->
+		</div>
+		<hr>
+		<span class="lab"><strong>Autori:</strong></span>
+		<div th:each="autore: ${libro.autori}">
+			<p> <a class="titolo" th:href="@{'/autore/' + ${autore.id}}"
+					th:text="${autore.nome} + ' ' + ${autore.cognome}"> nome e cognome</a></p>
+		</div>
+	</div>
+	<!-- divisione recensioni libro -->
+	<div id="recensione" th:if="${#lists.size(libro.recensioni) > 0}">
+		<div th:each="recensione : ${libro.recensioni}">
+			<p class="titolo"><span th:text="${recensione.titolo}"></span></p>
+			<p class="data"><strong>Recensione - Data:</strong> <span th:text="${recensione.data}"></span></p>
+			<p class="testo"><span th:text="${recensione.testo}"></span></p>
+			<p class="utente"><strong>Lasciata da:</strong> <span
+					th:text="${recensione.utente.credenziali.username}"></span></p>
+			<p class="voto"><strong>Voto:</strong> <span th:text="${recensione.voto}"></span></p>
+		</div>
+	</div>
+</body>
+
+</html>

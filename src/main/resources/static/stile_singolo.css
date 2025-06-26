@@ -1,0 +1,153 @@
+/* Reset margini e padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+/* Corpo della pagina */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px 0;
+  background-image: url('/libri.png');
+  background-size: 300px 300px; /* Immagine ridotta a 100x100 pixel */
+  background-repeat: repeat; /* Ripetizione in entrambe le direzioni */
+}
+
+.error { color: red; }
+
+#logo img {
+    width: 350px;
+	margin: 30px 100px;
+    float: left;
+	border-radius: 300px;
+	background-color: rgb(238, 225, 202);
+	border: 3px solid #b2724f;	
+	box-shadow: 0 0 20px 7.5px #b2724f; /* Ombra marcata su ogni lato */
+	transition: background-color 0.3s ease, transform 0.2s ease; /* Aggiunge transizioni fluide per colore di sfondo e trasformazione */
+}
+
+#logo img:hover {
+	transform: scale(1.05); /* Ingrandisce il bottone del 10% al passaggio del mouse */
+}
+
+#logo img:active {
+    transform: scale(0.98); /* Riduce leggermente il bottone (2%) per un effetto di pressione */
+}
+
+/* Titolo della pagina */
+h1 {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 10px;
+  font-size: 2em;
+  color: #333;
+  font-weight: bold;
+}
+
+.contenitore {
+	margin: 30px;
+	max-width: calc(50%);
+	min-width: calc(30%);
+	  display: inline-block;
+	  background-color: rgb(238, 225, 202);
+	  padding: 30px 40px;
+	  border-radius: 20px;
+	  text-align: left;
+	  border: 3px solid #b2724f;	
+	  box-shadow: 0 0 20px 7.5px rgb(167,134,100);	
+}
+
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2rem;
+	margin: 5px;
+}
+
+/* Label e input */
+.lab {
+  display: block;
+  font-size: 1.3rem;
+  margin: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.dettagli img {
+	max-width: 100%; /* Larghezza fissa per tutte le immagini */
+	    max-height: 300px; /* Altezza fissa uguale alla larghezza per ottenere un quadrato */
+	    margin-top: 20px; /* Mantieni il margine destro */
+	    border-radius: 10px; /* Mantieni gli angoli arrotondati */
+	    display: block; /* Mantieni l'immagine come elemento a blocco */
+	    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore senza distorsioni */
+	    overflow: hidden; /* Nasconde eventuali parti dell'immagine che escono dal contenitore */
+		box-shadow: 0 0 10px 5px rgb(167,134,100);	
+}
+
+hr {
+    border: none;
+	border-radius: 10px;
+    height: 3px;
+    background-color: #b2724f;
+    margin: 15px 0;
+}
+
+
+
+.css-slider {
+	position: relative;
+	width: 220px;
+	margin: auto;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+.slides .slide {
+	display: none;
+	text-align: center;
+}
+
+input#slide1:checked ~ .slides .slide:nth-child(1),
+input#slide2:checked ~ .slides .slide:nth-child(2),
+input#slide3:checked ~ .slides .slide:nth-child(3),
+input#slide4:checked ~ .slides .slide:nth-child(4),
+input#slide5:checked ~ .slides .slide:nth-child(5) {
+	display: block;
+}
+
+.controls {
+	margin-top: 10px;
+}
+
+.controls label {
+	background-color: #b2724f;
+	color: white;
+	padding: 5px 10px;
+	margin: 0 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.controls label:hover {
+	background-color: rgb(152, 97, 67);
+	transform: scale(1.2);
+}
+
+a {
+    text-decoration: none; /* Rimuove la sottolineatura dal link */
+    color: #333; /* Colore grigio scuro */
+    font-size: 1.15rem; /* Dimensione del font di 1.1rem */
+    font-weight: 525; /* Testo in grassetto */
+}
+a:hover {
+    color: #b2724f; /* Colore verde scuro al passaggio del mouse */
+}
+a.titolo{
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 1.3rem; /* Dimensione del font di 1.1rem */
+	font-weight: bold; /* Testo in grassetto */
+} 

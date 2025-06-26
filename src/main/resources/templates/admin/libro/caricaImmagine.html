@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Modifica Immagine Libro</title>
+	<link rel="stylesheet" href="/stile_log.css">
+</head>
+
+<body>
+	<a id="logo" href="/"><img src="/logo.png" /></a>
+	<div class="contenitore">
+		<h1>Modifica immagine per:
+			<span class="ilbro" th:text="${libro.titolo}">Titolo libro</span>
+		</h1>
+
+		<!-- Mostra tutte le immagini, se presenti -->
+		<!--		<div th:if="${libro.immagini != null and !libro.immagini.empty}"> -->
+		<div th:if="${#lists.size(libro.immagini) > 0}">
+			<span class="lab"><strong>Immagini attuali:</strong></span>
+			<div th:each="img : ${libro.immagini}" class="img-contenitore">
+				<img th:src="@{/immagine/{id}(id=${img.id})}" alt="Immagine Libro" width="200" />
+				<a th:href="@{'/admin/cancellaImmagineLibro/' + ${libro.id} + '/' + ${img.id}}">
+					<button class="btn-rimuovi"><strong>Rimuovi<br>immagine</strong></button>
+				</a>
+			</div>
+		</div>
+
+		<!-- Messaggio di errore, se presente -->
+		<div th:if="${error}" class="error">
+			<p th:text="${error}"></p>
+		</div>
+
+		<!-- Form per caricare una nuova immagine -->
+		<form th:action="@{'/admin/modificaImmagineLibro/' + ${libro.id}}" method="post" enctype="multipart/form-data">
+			<div class="bottoni-riga">
+				<label class="label-button" for="file">Scegli immagine:</label>
+				<input type="file" id="file" name="file" accept="image/*" required />
+				<button type="submit"><strong>Carica</strong></button>
+			</div>
+		</form>
+
+		<a th:href="@{'/admin/modificaLibro/' + ${libro.id}}">
+			<button id="annulla" type="button"><strong>Torna indietro</strong></button>
+		</a>
+	</div>
+</body>
+
+</html>

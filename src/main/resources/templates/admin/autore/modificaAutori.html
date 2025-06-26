@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>MODIFICA AUTORI</title>
+	<link rel="stylesheet" href="/stile_elenco.css" />
+</head>
+
+<body>
+	<!-- Divisione pulsanti per permettere di scegliere se
+					inserire una tipologia specifica di prodotto -->
+	<div class="header-container">
+		<a id="logo" href="/"><img src="/logo.png" alt="Logo"></a>
+		<div class="right-buttons">
+			<a href="/admin/newAutore"> <button>Inserisci nuovo autore</button></a>
+		</div>
+	</div>
+	<div class="form-container">
+		<form action="/admin/cercaAutori" method="GET">
+			<label for="filtro">Cerca:</label>
+			<input type="text" id="filtro" placeholder="cosa cerchi?" name="filtro">
+			<!-- Menu a tendina per scegliere la tipologia di ricerca -->
+			<label for="tipoRicerca">Ricerca per:</label>
+			<select id="tipoRicerca" name="tipoRicerca">
+				<option value="nome">Nome</option>
+				<option value="cognome">Cognome</option>
+				<option value="nazione">Nazione</option>
+			</select>
+			<button type="submit">Cerca</button>
+		</form>
+
+		
+<br>
+		<!-- Mostra messaggio se la lista di autori è vuota -->
+		<h1 th:if="${!autori.isEmpty()}" th:text="'Elenco autori'"></h1>
+		<span th:if="${autori.isEmpty()}">No authors available.</span>
+		<span th:if="${numero}" th:text="'sono stati trovati ' + ${numero} + ' autori'"></span>
+	</div>
+
+	<div id="lista">
+		<ul>
+			<li th:each="autore : ${autori}">
+				<div class="oggetto">
+
+					<div class="oggetto-dettagli">
+						<h2><a class="titolo" th:href="@{'/autore/' + ${autore.id}}"
+								th:text="${autore.nome} + ' ' + ${autore.cognome}"> nome e cognome</a></h2>
+						<hr>
+						<p><a class="modifica" th:href="@{'/admin/modificaAutore/' + ${autore.id}}">Modifica</a></p>
+						<p><a class="cancella" th:href="@{'/admin/cancellaAutore/' + ${autore.id}}">Cancella</a></p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+
+</html>

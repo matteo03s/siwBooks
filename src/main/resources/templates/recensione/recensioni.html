@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Recensioni</title>
+	<link rel="stylesheet" href="/stile_elenco.css" />
+</head>
+
+<body>
+	<a id="logo" href="/"> <img src="/logo.png"> </a>
+	<div class="form-container">
+		<h1 th:if="${!recensioni.isEmpty()}">Le tue recensioni </h1>
+		<!-- Modulo di ordinamento -->
+		<form action="/recensione/ordinaRecensioni" method="GET">
+			<label for="ordine">Ordina per:</label>
+			<select id="ordine" name="ordine">
+				<option value="voto">Voto</option>
+				<option value="data">Data</option>
+			</select>
+			<label for="tipoRicerca">Ricerca per:</label>
+			<select id="tipoRicerca" name="tipoRicerca">
+				<option value="ascendente">Ascendente</option>
+				<option value="discendente">Discendente</option>
+			</select>
+			<button type="submit">Ordina</button>
+		</form>
+		<span th:if="${recensioni.isEmpty()}">Non ci sono recensioni</span>
+		<span th:if="${numero}" th:text="'sono stati trovati ' + ${numero} + ' elementi'"></span>
+		<a href="/recensione/new"><button class="rec">Scrivi una recensione</button></a>
+	</div>
+	<div id="lista" th:if="${!recensioni.isEmpty()}">
+		<ul>
+			<li class="recensione" th:each="recensione:${recensioni}">
+				<h2><a class="titolo" th:href="@{'/libro/' + ${recensione.libro.id}}"
+						th:text="${recensione.libro.titolo}"></a></h2>
+				<h3 th:text="${recensione.titolo} + ' - Voto:' + ${recensione.voto} + '/5'"></h3><br>
+				<p th:text="${recensione.testo}"></p><br>
+				<p th:text="'scritta il: ' + ${recensione.data}"></p>
+			</li>
+		</ul>
+	</div>
+</body>
+
+</html>

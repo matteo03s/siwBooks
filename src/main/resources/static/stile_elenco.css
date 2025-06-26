@@ -1,0 +1,305 @@
+/* Reset delle impostazioni di base per evitare conflitti tra i browser */
+* {
+    margin: 0; /* Rimuove i margini predefiniti di tutti gli elementi */
+    padding: 0; /* Rimuove il padding predefinito di tutti gli elementi */
+    box-sizing: border-box; /* Include padding e bordi nella larghezza/altezza totale */
+}
+
+/* Corpo della pagina */
+body {
+    font-family: 'Arial', sans-serif; /* Imposta il font a Arial o sans-serif */
+    background-color: #f4f4f9; /* Sfondo grigio chiaro per la pagina */
+    color: #333; /* Colore del testo grigio scuro */
+    line-height: 1.6; /* Altezza della linea per migliorare la leggibilità */
+    padding: 20px; /* Aggiunge 20px di padding attorno al body */
+	background-image: url('/libri.png');
+	background-size: 150px 150px; /* Immagine ridotta a 100x100 pixel */
+	background-repeat: repeat; /* Ripetizione in entrambe le direzioni */
+
+}
+
+/* Contenitore per logo e pulsanti */
+.header-container {
+    display: flex; /* Usa Flexbox per allineare i figli orizzontalmente */
+    justify-content: center; /* Centra i figli orizzontalmente */
+    align-items: center; /* Allinea i figli verticalmente al centro */
+    gap: 30px; /* Spazio di 30px tra pulsanti e logo */
+    margin: 5px 0; /* Margine sopra/sotto di 20px */
+}
+
+#logo img {
+    width: 250px;
+    margin: 10px 10px;
+	margin-left:10px;
+    float: left;
+	border-radius: 300px;
+	background-color: rgb(238, 225, 202);
+	border: 3px solid #b2724f;	
+	box-shadow: 0 0 20px 7.5px rgb(167,134,100); /* Ombra marcata su ogni lato */
+	transition: background-color 0.3s ease, transform 0.2s ease; /* Aggiunge transizioni fluide per colore di sfondo e trasformazione */
+}
+
+#logo img:hover {
+	transform: scale(1.1); /* Ingrandisce il bottone del 10% al passaggio del mouse */
+}
+
+#logo img:active {
+    transform: scale(0.98); /* Riduce leggermente il bottone (2%) per un effetto di pressione */
+}
+
+/* Pulsanti a destra */
+.right-buttons {
+    display: flex; /* Usa Flexbox per allineare i pulsanti */
+    flex-direction: column; /* Impila i pulsanti verticalmente */
+    gap: 15px; /* Spazio di 15px tra i pulsanti */
+}
+.right-buttons button {
+	font-weight: 150;
+	font-size: 2rem;
+}
+
+
+.form-container span,h1 {
+	display: inline-block; /* Rende lo span un elemento a blocco */
+	text-align: center; /* Centra il testo dello span */
+	color: #b2724f;
+	margin-top:0;
+}
+/* Sezione di ordinamento */
+form {
+	display: inline-block; /* Usa Flexbox per allineare gli elementi del form */
+    justify-content: center; /* Centra gli elementi del form orizzontalmente */
+    align-items: center; /* Allinea gli elementi verticalmente al centro */
+    gap: 10px; /* Spazio di 10px tra label, select e button */
+    margin: 5px 50px; /* Margine sopra/sotto e centra orizzontalmente */
+	font-size: 1.15rem; /* Dimensione del font per form*/
+}
+
+/* Titolo della pagina */
+h1 {
+    text-align: center; /* Centra il testo del titolo */
+    color: #333; /* Colore grigio scuro per il titolo */
+    font-size: 2rem; /* Dimensione del font di 2rem (circa 32px) */
+    margin-top: 10px; /* Margine superiore di 20px */
+}
+
+/* Messaggio quando la lista è vuota */
+span {
+    display: block; /* Rende lo span un elemento a blocco */
+    text-align: center; /* Centra il testo dello span */
+    color: #888; /* Colore grigio chiaro per il messaggio */
+    margin-top: 10px; /* Margine superiore di 20px */
+}
+
+form label {
+    font-weight: bold; /* Rende il testo della label in grassetto */
+    margin-right: 10px; /* Margine destro di 10px per separare dalla select */
+}
+
+form select {
+	border: 3px solid #b2724f;
+    background-color: rgb(238, 225, 202); /* Sfondo beige per la select */
+    padding: 5px; /* Padding interno di 5px */
+    font-size: 1.15rem; /* Dimensione del font di 1rem (circa 16px) */
+/*    border: 1px solid #ccc; /* Bordo grigio chiaro di 1px */
+    border-radius: 5px; /* Angoli arrotondati di 5px */
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+/* Lista dei prodotti */
+#lista {
+    margin-top: 30px; /* Margine superiore di 30px */
+	
+}
+
+#lista ul {
+    display: flex; /* Mantieni Flexbox */
+    flex-wrap: wrap; /* Permetti agli elementi di andare a capo */
+    list-style-type: none; /* Rimuove i punti elenco */
+    padding: 0; /* Rimuove il padding */
+
+}
+
+#lista li {
+    flex: 0 1 calc(25% - 30px); /* 25% di larghezza meno i margini (15px a sinistra + 15px a destra) */
+    border: 3px solid #b2724f;    
+    box-shadow: 0 0 20px 7.5px rgb(167,134,100); /* Ombra */
+    background-color: rgb(238, 225, 202); /* Sfondo beige */
+    margin: 15px; /* Margine di 15px su tutti i lati */
+    padding: 15px; /* Padding interno */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transizioni */
+    border-radius: 10px; /* Angoli arrotondati */
+    box-sizing: border-box; /* Include padding e bordi nella larghezza */
+}
+
+
+#lista li p{
+	display: inline-block; /* Usa Flexbox per allineare i figli orizzontalmente */
+}
+
+#lista li:hover {
+    background-color: rgb(223, 200, 155); /* Beige più scuro al passaggio del mouse */
+    transform: translateY(-5px); /* Solleva l'elemento di 5px */
+}
+
+.oggetto {
+    display: flex;
+    flex-direction: column; /* Metti immagine sopra e testo sotto */
+    text-align: center;      /* Centra il testo dentro il box */
+	align-items: center;     /* centra orizzontalmente tutto (immagine + testo) */
+	justify-content: center; /* opzionale: centra anche verticalmente */
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.oggetto-dettagli img {
+    width: 90%; /* Larghezza fissa per tutte le immagini */
+    height: auto; /* Altezza fissa uguale alla larghezza per ottenere un quadrato */
+	margin: 0 auto;
+    border-radius: 5px; /* Mantieni gli angoli arrotondati */
+    display: block; /* Mantieni l'immagine come elemento a blocco */
+    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore senza distorsioni */
+    overflow: hidden; /* Nasconde eventuali parti dell'immagine che escono dal contenitore */
+	box-shadow: 0 0 10px 5px rgb(167,134,100);
+}
+.oggetto-dettagli {
+    flex-grow: 1; /* Fa crescere il contenitore per occupare lo spazio disponibile */
+    display: flex; /* Usa Flexbox per il testo */
+    flex-direction: column; /* Imposta gli elementi in colonna */
+}
+
+#lista a {
+    text-decoration: none; /* Rimuove la sottolineatura dal link */
+    color: #333; /* Colore grigio scuro */
+    font-size: 1.15rem; /* Dimensione del font di 1.1rem */
+    font-weight: 525; /* Testo in grassetto */
+}
+
+#lista p {
+    text-decoration: none; /* Rimuove la sottolineatura (ridondante per <p>) */
+    color: #333; /* Colore grigio scuro */
+    font-size: 1.1rem; /* Dimensione del font di 1.1rem */
+
+}
+#lista li.autore {
+	flex: 0 1 calc(33% - 30px); /* 25% di larghezza meno i margini (15px a sinistra + 15px a destra) */
+}
+
+#lista span.tipo {
+    text-decoration: none; /* Rimuove la sottolineatura (ridondante per <span>) */
+    font-size: 0.9rem; /* Dimensione del font di 0.9rem */
+    font-weight: bold; /* Testo in grassetto */
+}
+
+#lista a:hover {
+    color: #b2724f; /* Colore verde scuro al passaggio del mouse */
+}
+
+#lista a.titolo{
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 1.3rem; /* Dimensione del font di 1.1rem */
+	font-weight: bolder; /* Testo in grassetto */
+} 
+button { /* Seleziona gli elementi <button> all'interno di un elemento con id="turno" */
+	font-size: 1.3rem; /* Dimensione del font di 1.3rem */
+	padding: 5px 10px; /* Padding di 5px sopra/sotto, 10px sinistra/destra */
+    margin: 5px 10px; /* Aggiunge 5px di margine sopra/sotto e 10px a sinistra/destra */
+    background-color: #b2724f; /* Imposta uno sfondo beige scuro per i bottoni */
+    color: white; /* Imposta il colore del testo a bianco */
+    border: none; /* Rimuove il bordo predefinito dei bottoni */
+    border-radius: 6px; /* Arrotonda gli angoli dei bottoni con un raggio di 6 pixel */
+    cursor: pointer; /* Cambia il cursore in un puntatore al passaggio del mouse */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Aggiunge transizioni fluide per colore di sfondo e trasformazione */
+	box-shadow: 0 0 5px 1px #b2724f; /* Ombra marcata su ogni lato */
+}
+button:hover { /* Seleziona i bottoni di #turno al passaggio del mouse */
+	background-color: rgb(145, 92, 64); /* Verde più scuro al passaggio del mouse */
+    transform: scale(1.1); /* Ingrandisce il bottone del 10% al passaggio del mouse */
+}
+
+button:active { /* Seleziona i bottoni di #turno quando vengono cliccati */
+    transform: scale(0.98); /* Riduce leggermente il bottone (2%) per un effetto di pressione */
+}
+
+
+.form-container {
+	margin: 50px;
+	justify-content: center; /* Centra gli elementi del form orizzontalmente */
+	display: block; /* Usa Flexbox per allineare gli elementi del form */
+	background-color: rgb(238, 225, 202);
+	padding: 10px ;
+	border-radius: 20px;
+	text-align: center;
+	border: 3px solid #b2724f;	
+	box-shadow: 0 0 20px 7.5px rgb(167,134,100); /* Ombra marcata su ogni lato */
+	margin-bottom: 20px;	
+}
+#lista .recensione {
+    flex: 0 1 calc(45% - 30px); /* 25% di larghezza meno i margini (15px a sinistra + 15px a destra) */
+}
+button.rec {
+	font-size: 1.5rem;
+}
+
+hr {
+    border: none;
+	border-radius: 10px;
+    height: 1.5px;
+    background-color: #b2724f;
+    margin-bottom: 15px;
+}
+/* Styling per il layout responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Impila pulsanti, logo e form verticalmente */
+        align-items: center; /* Centra tutto orizzontalmente */
+    }
+	.form-container {
+	        flex-direction: column; /* Impila pulsanti, logo e form verticalmente */
+	        align-items: center; /* Centra tutto orizzontalmente */
+	    }
+
+    .left-buttons, .right-buttons {
+        flex-direction: column; /* Mantiene i pulsanti impilati verticalmente */
+        align-items: center; /* Centra i pulsanti */
+        gap: 10px; /* Spazio di 10px tra i pulsanti */
+        width: 90%; /* Pulsanti occupano il 90% della larghezza */
+    }
+
+    .left-buttons button, .right-buttons button {
+        padding: 10px 20px; /* Riduce il padding per pulsanti più piccoli */
+        font-size: 1rem; /* Riduce la dimensione del font a 1rem */
+        width: 100%; /* Pulsanti occupano tutta la larghezza del contenitore */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Riduce la dimensione del titolo a 1.5rem */
+    }
+
+    form {
+        margin: 10px auto; /* Riduce il margine sopra/sotto */
+    }
+
+    form select, form button {
+        font-size: 0.9rem; /* Riduce la dimensione del font a 0.9rem */
+        padding: 3px 7px; /* Riduce il padding per select e button */
+    }
+
+    .prodotto-img {
+        width: 80px; /* Riduce la larghezza dell'immagine a 80px */
+        height: 80px; /* Riduce l'altezza dell'immagine a 80px */
+    }
+
+    #lista li {
+        padding: 10px; /* Riduce il padding degli elementi della lista a 10px */
+    }
+}
+

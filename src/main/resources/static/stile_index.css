@@ -1,0 +1,221 @@
+/* Resetta i margini e i padding di default per tutti gli elementi */
+* {
+    margin: 0; /* Rimuove i margini predefiniti */
+    padding: 0; /* Rimuove i padding predefiniti */
+    box-sizing: border-box; /* Include padding e bordi nella larghezza/altezza totale */
+}
+
+/* Stile per il corpo della pagina */
+body {
+    background-color: rgb(238,225,202); /* Imposta il colore di sfondo del body */
+}
+
+/* Stile per la navbar */
+.navbar {
+    position: fixed; /* Fissa la navbar in alto anche durante lo scorrimento */
+    top: 0; /* Posiziona la navbar nella parte superiore della pagina */
+    width: 100%; /* Fa occupare alla navbar l'intera larghezza della pagina */
+    background-color: rgba(204,158,110,255); /* Imposta il colore di sfondo della navbar */
+    z-index: 1000; /* Assicura che la navbar sia sopra altri elementi */
+}
+
+/* Stile per la lista non ordinata nella navbar */
+.navbar ul {
+    display: flex; /* Dispone gli elementi della lista in orizzontale */
+    justify-content: space-between; /* Distribuisce gli elementi uniformemente */
+    align-items: center; /* Allinea gli elementi verticalmente al centro */
+    list-style: none; /* Rimuove i punti predefiniti della lista */
+    padding: 0 20px; /* Aggiunge padding laterale di 20px */
+    height: 135px; /* Imposta un'altezza fissa per ospitare il logo */
+}
+
+/* Stile per gli elementi della lista nella navbar */
+.navbar ul li {
+    flex: 1; /* Fa occupare a ogni elemento la stessa larghezza disponibile */
+    text-align: center; /* Centra il testo orizzontalmente */
+    height: 100%; /* Fa occupare l'intera altezza della navbar */
+    display: flex; /* Usa flexbox per allineare il contenuto */
+    align-items: center; /* Centra il contenuto verticalmente */
+    justify-content: center; /* Centra il contenuto orizzontalmente */
+}
+
+/* Stile per i link all'interno degli elementi della lista */
+.navbar ul li a {
+    color: #fff; /* Imposta il colore del testo dei link a bianco */
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
+    font-size: 26px; /* Imposta la dimensione del testo dei link */
+    display: block; /* Rende il link un blocco per occupare tutta l'area */
+    width: 100%; /* Fa occupare al link l'intera larghezza dell'elemento */
+    height: 100%; /* Fa occupare al link l'intera altezza dell'elemento */
+    display: flex; /* Usa flexbox per centrare il testo */
+    align-items: center; /* Centra il testo verticalmente */
+    justify-content: center; /* Centra il testo orizzontalmente */
+    transition: background-color 0.3s; /* Aggiunge un'animazione fluida per il cambio di sfondo */
+}
+
+/* Effetto al passaggio del mouse sui link */
+.navbar ul li a:hover {
+    background-color: rgb(191, 132, 72); /* Cambia il colore di sfondo al passaggio del mouse */
+}
+
+/* Stile per l'elemento che contiene il logo */
+.navbar ul li #logo_home {
+    display: flex; /* Usa flexbox per centrare il logo */
+    justify-content: center; /* Centra il logo orizzontalmente */
+    align-items: center; /* Centra il logo verticalmente */
+    height: 100%; /* Fa occupare l'intera altezza della navbar */
+}
+
+/* Stile per l'immagine del logo */
+.navbar ul li #logo_home img {
+    max-height: 135px; /* Imposta l'altezza massima del logo */
+    width: auto; /* Mantiene le proporzioni dell'immagine */
+}
+
+/* Disabilita l'effetto hover sul logo */
+.navbar ul li a#logo_home:hover {
+    background-color: transparent; /* Nessun cambio di sfondo per il logo */
+}
+
+/* Stile per gli elementi <span> */
+span {
+    color: beige; /* Imposta il colore del testo degli span a beige */
+}
+
+/* Aggiunge spazio sopra il contenuto del body per evitare sovrapposizioni con la navbar fissa */
+body {
+    padding-top: 135px; /* Aggiunge uno spazio superiore pari all'altezza della navbar */
+}
+
+.container {
+    max-width: 100%; /* o 1000px, a tua scelta */
+    margin: 0 auto;     /* centra il contenitore nella pagina */
+	padding: 0 10vw;
+    box-sizing: border-box;
+}
+
+
+.carousel h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carousel-track {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.oggetto-img {
+    flex: 0 1 200px;
+    min-width: 150px;
+    max-width: 200px;
+    text-align: center;
+}
+
+
+.carousel-track figure {
+    flex: 1 1 calc(20% - 20px);
+    min-width: 150px;
+    max-width: 200px;
+    height: 280px;
+    scroll-snap-align: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-track img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,.25);
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+.carousel-track figcaption {
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Stile per il contenitore dei pulsanti */
+#pulsanti {
+    display: flex; /* Dispone i pulsanti in orizzontale */
+    width: 100%; /* Fa occupare l'intera larghezza disponibile */
+    height: 350px; /* Imposta un'altezza fissa per i pulsanti */
+    margin-bottom: 40px; /* Aggiunge margine inferiore */
+    border-radius: 12px; /* Aggiunge bordi arrotondati */
+    overflow: hidden; /* Nasconde il contenuto che eccede i bordi */
+}
+
+hr {
+    border: none;
+	border-radius: 10px;
+	width: 90%;
+    height: 10px;
+    background-color: rgba(204,158,110,255);
+    margin: auto;
+}
+
+
+a.titolo {
+    text-decoration: none; /* Rimuove la sottolineatura dal link */
+    color: #333; /* Colore grigio scuro */
+    font-size: 1.15rem; /* Dimensione del font di 1.1rem */
+    font-weight: 525; /* Testo in grassetto */
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 1.3rem; /* Dimensione del font di 1.1rem */
+	font-weight: bolder; /* Testo in grassetto */
+}
+
+a:hover {
+    color: #b2724f; /* Colore verde scuro al passaggio del mouse */
+}
+
+
+/* Media query per schermi inferiori a 600px */
+@media (max-width: 600px) {
+    #pulsanti {
+        flex-direction: column; /* Dispone i pulsanti in verticale */
+        height: auto; /* Imposta un'altezza adattabile */
+    }
+    .half-btn {
+        flex: none; /* Rimuove la proporzione fissa */
+        width: 100%; /* Fa occupare l'intera larghezza */
+        padding: 30px 10px; /* Aggiunge padding per adattarsi */
+        font-size: 1.6rem; /* Riduce la dimensione del testo */
+    }
+}
+
+/* Media query per schermi inferiori a 768px */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column; /* Dispone gli elementi della navbar in verticale */
+        height: auto; /* Imposta un'altezza adattabile */
+        padding: 10px; /* Riduce il padding */
+    }
+
+    .navbar ul li {
+        width: 100%; /* Fa occupare a ogni elemento l'intera larghezza */
+        height: 60px; /* Riduce l'altezza di ogni elemento */
+    }
+
+    .navbar ul li a {
+        font-size: 20px; /* Riduce la dimensione del testo dei link */
+        display: flex; /* Mantiene il centramento del testo */
+        align-items: center; /* Centra il testo verticalmente */
+        justify-content: center; /* Centra il testo orizzontalmente */
+    }
+
+    .navbar ul li #logo_home img {
+        max-height: 80px; /* Riduce l'altezza massima del logo */
+    }
+
+    body {
+        padding-top: 350px; /* Aumenta lo spazio sopra il contenuto per la navbar più alta */
+    }
+}

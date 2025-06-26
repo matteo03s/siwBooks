@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Modifica Immagine Autore</title>
+	<link rel="stylesheet" href="/stile_log.css">
+</head>
+
+<body>
+	<a id="logo" href="/"><img src="/logo.png" /></a>
+	<div class="contenitore">
+		<h1>Modifica immagine per: <span class="autore"			
+		th:text="${autore.nome} + ' ' + ${autore.cognome}">Nome Autore</span></h1>
+
+		<div th:if="${autore.immagine != null}">
+			<span class="lab"><strong>Immagine attuale:</strong> </span>
+			<div class="img-contenitore">
+				<img th:src="@{/immagine/{id}(id=${autore.immagine.id})}" alt="Immagine Autore" width="200" />
+				<a th:href="@{'/admin/cancellaImmagineAutore/' + ${autore.id} + '/' + ${autore.immagine.id}}">
+					<button class="btn-rimuovi"><strong>Rimuovi<br>immagine</strong></button>
+				</a>
+			</div>
+		</div>
+
+		<!-- Messaggio di errore, se presente -->
+		<div th:if="${error}" class="error">
+			<p th:text="${error}"></p>
+		</div>
+
+		<!-- Form per caricare una nuova immagine -->
+
+		<form th:action="@{'/admin/modificaImmagineAutore/' + ${autore.id}}" method="post" enctype="multipart/form-data">
+			<div class="bottoni-riga">
+				<label class="label-button" for="file">Scegli immagine:</label>
+				<input type="file" id="file" name="file" accept="image/*" required />
+
+				<button type="submit"><strong>Carica</strong></button>
+
+		</form>
+
+
+		<a th:href="@{'/admin/modificaAutore/' + ${autore.id}}">
+			<button id="annulla" type="button"><strong>Torna indietro</strong></button></a>
+	</div>
+	</div>
+</body>
+
+</html>

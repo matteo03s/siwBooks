@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Scelta autori</title>
+	<link rel="stylesheet" href="/stile_log.css" />
+</head>
+
+<body>
+
+	<a id="logo" href="/"><img src="/logo.png" /></a>
+	<div class="form-container">
+	<h2 th:text="'Autori del libro: ' + ${libro.titolo}"></h2>
+	<div th:if="${libro.autori.isEmpty()}">Non ci sono autori per questo libro</div>
+	<ul>
+		<li th:each="autore: ${libro.autori}">
+			<span class="cc" th:text="${autore.nome} + ' ' + ${autore.cognome}"></span>
+			<a th:href="@{'/admin/rimuoviAutoreLibro/' + ${autore.id} + '/' + ${libro.id}}"><button type="button" class="piccolo">Cancella</button></a>
+		</li>
+	</ul>
+	<div>
+		<h2>Autori che si possono aggiungere:</h2>
+		<ul>
+			<li th:each="autore: ${autoriAgg}">
+				<span class="cc" th:text="${autore.nome} + ' ' + ${autore.cognome}"></span>
+				<a th:href="@{'/admin/aggiungiAutoreLibro/'+ ${autore.id}+'/'+${libro.id}}"><button type="button" class="piccolo">Aggiungi</button></a>
+				
+			</li>
+		</ul>
+	<div>
+	<div>
+		<a th:href="@{'/admin/modificaLibro/' + ${libro.id}}"><button type="button">Fine</button></a>
+	</div>
+	</div>
+</body>
+
+</html>

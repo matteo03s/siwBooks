@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home siw books</title>
+	<link rel="stylesheet" href="/stile_index.css">
+</head>
+
+<body>
+	<nav class="navbar">
+		<ul>
+			<li><a href="/libri">La nostra libreria</a></li>
+			<li><a href="/autori">I migliori autori</a></li>
+			<li><a id="logo_home" href="/"><img src="/logo.png"></a></li> <!-- Logo al centro -->
+			<li><a href="/recensione/recensioni">Visualizza le tue recensioni</a></li>
+			<li>
+				<div id="login">
+					<a href="/utente">
+						<span th:if="${userDetails != null}" th:text="'Ciao ' + ${userDetails.username}">Nome
+							utente</span>
+					</a>
+					<p th:if="${userDetails == null}" class="login-link">
+						<a href="/login">Login</a>
+					</p>
+					<p th:if="${userDetails == null}" class="register-link">
+						<span>Non hai un account?</span> <a href="/register">Registrati</a>
+					</p>
+					<p th:if="${userDetails != null}" class="logout-link">
+						<a href="/logout">Logout</a>
+					</p>
+				</div>
+			</li>
+		</ul>
+	</nav>
+
+
+	<main>
+		<br><br>
+		<hr>
+		<div class="container">
+			<section class="carousel">
+				<h2>I bestsellers</h2>
+				<div class="carousel-track">
+					<th:block th:each="libro: ${libri}">
+						<div th:if="${libro.immagini != null and !libro.immagini.empty}" class="oggetto-img">
+							<figure>
+								<img th:src="@{'/immagine/' + ${libro.immagini[0].id}}"
+									alt="Copertina di {{libro.titolo}}" />
+								<figcaption><a class="titolo" th:href="@{'/libro/' + ${libro.id}}"
+										th:text="${libro.titolo}"></figcaption>
+							</figure>
+						</div>
+					</th:block>
+				</div>
+			</section>
+			<hr>
+			<section class="carousel">
+				<h2>I grandi autori</h2>
+				<div class="carousel-track">
+					<th:block th:each="autore: ${autori}">
+						<div th:if="${autore.immagine != null}" class="oggetto-img">
+							<figure>
+								<img th:src="@{/immagine/{id}(id=${autore.immagine.id})}"
+									alt="Foto di {{autore.nome}}" />
+								<figcaption><a class="titolo" th:href="@{'/autore/' + ${autore.id}}"
+										th:text="${autore.nome} + ' ' + ${autore.cognome}"></a></figcaption>
+							</figure>
+						</div>
+					</th:block>
+				</div>
+			</section>
+		</div>
+	</main>
+
+</body>
+
+</html>

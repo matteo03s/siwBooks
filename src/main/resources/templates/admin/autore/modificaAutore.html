@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Autore</title>
+	<link rel="stylesheet" href="/stile_log.css">
+</head>
+<body>
+	<a id="logo" href="/"><img src="/logo.png" /></a>
+	<div class="form-container">					
+
+    <!-- Usa th:object per associare il form all'oggetto autore -->
+    <form id="none" th:action="@{'/admin/autori/' + ${autore.id}}" th:object="${autore}" method="POST" enctype="multipart/form-data">
+		<h1>Modifica Autore</h1>
+		<span>*i campi lasciati vuoti verranni riempiti con i dati preinseriti</span>
+		<label for="nome"><strong>Nome:</strong></label>
+        <!-- Usa th:field per il binding automatico -->
+        <input type="text" id="nome" th:field="${autore.nome}" >
+
+		<label for="cognome"><strong>Cognome:</strong></label>
+		<!-- Usa th:field per il binding automatico -->
+		<input type="text" id="cognome" th:field="${autore.cognome}" >
+
+		<label for="nazione"><strong>Nazione:</strong></label>
+		<!-- Usa th:field per il binding automatico -->
+		<input type="text" id="nazione" th:field="${autore.nazione}" >
+		
+		<label for="dataNascita"><strong>Data di nascita:</strong></label>
+		<!-- Usa th:field per il binding automatico -->
+		<input type="date" id="dataNascita" th:field="${autore.dataNascita}" >
+
+		<label for="dataMorte"><strong>Data di morte:</strong></label>
+		<!-- Usa th:field per il binding automatico -->
+		<input type="date" id="dataMorte" th:field="${autore.dataMorte}" >
+
+
+		<div id="pulsanti">
+        	<button type="submit">Salva modifiche</button>
+			<a href="/admin/modificaAutori"> <button id="annulla" type="button">Annulla</button></a>
+		</div>
+		<!-- Visualizza gli errori di validazione -->
+		<div th:if="${#fields.hasErrors('*')}" style="color:red">
+		    <p th:each="e : ${#fields.errors('*')}" th:text="${e}">Errore</p>
+		</div>
+    </form>
+	<hr>
+	<div>
+			<span class="lab"><strong>Libri:</strong></span>
+				<div th:each="libro: ${autore.libri}">
+					<p th:text="${libro.titolo} + ' (' + ${libro.anno} + ')'">promessi</p>
+				</div>
+				<a th:href="@{'/admin/modificaLibri/' + ${autore.id}}">
+					<button type="button">Modifica libri</button>
+				</a>
+				<a th:href="@{'/admin/modificaImmagineAutore/' + ${autore.id}}">
+					<button type="button">Modifica immagine</button>
+				</a>
+			</div>
+
+	</div>
+
+
+</body>
+</html>

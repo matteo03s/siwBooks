@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Nuovo Libro</title>
+	<link rel="stylesheet" href="/stile_log.css">
+</head>
+
+<body>
+	<a id="logo" href="/"><img src="/logo.png" /></a>
+	<div class="form-container">
+
+		<!-- Usa th:object per associare il form all'oggetto libro -->
+		<form id="none" th:action="@{/admin/libro}" th:object="${libro}" method="POST">
+			<h1>Nuovo Libro</h1>
+
+			<label for="titolo"><strong>Titolo:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="text" id="titolo" placeholder="Inserisci il titolo del libro" th:field="${libro.titolo}">
+
+			<label for="anno"><strong>Anno:</strong></label>
+			<!-- Usa th:field per il binding automatico -->
+			<input type="number" id="anno" placeholder="Inserisci l'anno del libro" th:field="${libro.anno}">
+
+<!--			<label for="genere"><strong>Genere:</strong></label>
+			<!- Usa th:field per il binding automatico ->
+			<input type="text" id="genere" placeholder="Inserisci il genere del libro" th:field="${libro.genere}">
+-->
+			<label for="trama"><strong>Trama:</strong></label>
+			<textarea id="trama" placeholder="Inserisci la trama del libro" th:field="${libro.trama}"></textarea>
+
+
+			<div id="pulsanti">
+				<button type="submit">Salva libro</button>
+				<a href="/admin/modificaLibri"> <button id="annulla" type="button">Annulla</button></a>
+			</div>
+			<!-- Visualizza gli errori di validazione -->
+			<div th:if="${#fields.hasErrors('*')}" style="color:red">
+				<p th:each="e : ${#fields.errors('*')}" th:text="${e}">Errore</p>
+			</div>
+
+		</form>
+	</div>
+
+
+</body>
+
+</html>

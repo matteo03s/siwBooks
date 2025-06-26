@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<!--<title th:text="${libro.categoria}"></title>
+ -->
+	<link rel="stylesheet" href="/stile_singolo.css" />
+</head>
+
+<body>
+	<a id="logo" href="/autori"><img src="/logo.png" /></a>
+	<div class="contenitore">
+		<h1 th:text="${autore.nome} + ' ' + ${autore.cognome}"> Nome cognome </h1>
+		<!-- Dettagli dell'autore -->
+		<div class="dettagli">
+			<p><strong>Nome e cognome:</strong> <span th:text="${autore.nome} + ' ' + ${autore.cognome}"></span></p>
+			<p><strong>Nazione:</strong> <span th:text="${autore.nazione}"></span></p>
+			<p><strong>Data di nascita:</strong> <span th:text="${autore.dataNascita}"></span></p>
+			<p th:if="${autore.dataMorte}"><strong>Data di morte:</strong> <span th:text="${autore.dataMorte}"></span>
+			</p>
+
+			<hr>
+			
+			<span class="lab"><strong>Libri:</strong></span>
+			<div th:each="libro: ${autore.libri}">
+				<p th:text="${libro.titolo} + ' (' + ${libro.anno} + ')'">Libro</p>
+			</div>
+			
+			<hr>
+		
+			<!-- divisione immagini autore -->
+			<div th:if="${autore.immagine != null}">
+				<img th:src="@{/immagine/{id}(id=${autore.immagine.id})}" alt="Immagine Autore" />
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

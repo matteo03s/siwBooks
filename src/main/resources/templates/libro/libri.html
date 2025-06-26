@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>LIBRERIA</title>
+	<link rel="stylesheet" href="/stile_elenco.css" />
+</head>
+
+<body>
+
+	<!-- Divisione pulsanti per permettere di scegliere se
+			mostrare una tipologia specifica di prodotto -->
+
+<a id="logo" href="/"><img src="/logo.png" alt="Logo"></a>
+
+	<div class="form-container">
+		<form action="/ordinaLibri" method="GET">
+			<label for="ordine">Ordina per:</label>
+			<select id="ordine" name="ordine">
+				<option value="titolo">Titolo</option>
+				<option value="anno">Anno</option>
+			</select>
+			<label for="tipoRicerca">Ricerca per:</label>
+			<select id="tipoRicerca" name="tipoRicerca">
+				<option value="ascendente">Ascendente</option>
+				<option value="discendente">Discendente</option>
+			</select>
+			<button type="submit">Ordina</button>
+		</form>
+
+		<form action="/cercaLibri" method="GET">
+			<label for="filtro">Cerca:</label>
+			<input type="text" id="filtro" placeholder="cosa cerchi?" name="filtro">
+
+			<!-- Menu a tendina per scegliere la tipologia di ricerca -->
+			<label for="tipoRicerca">Ricerca per:</label>
+			<select id="tipoRicerca" name="tipoRicerca">
+				<option value="titolo">Titolo libro</option>
+<!--				<option value="genere">Genere libro</option>
+-->				<option value="nome">Nome autore</option>
+				<option value="cognome">Cognome autore</option>
+				<option value="nazione">Nazione autore</option>
+			</select>
+			<button type="submit">Cerca</button>
+		</form>
+
+
+		<!-- Mostra messaggio se la lista prodotti è vuota -->
+		<h1 th:if="${!libri.isEmpty()}" th:text="'Elenco libri'"></h1>
+		<span th:if="${libri.isEmpty()}">No books available.</span>
+		<span th:if="${numero}" th:text="'  sono stati trovati ' + ${numero} + ' libri'"></span>
+	</div>
+
+
+
+	<div id="lista">
+		<ul>
+			<li th:each="libro : ${libri}">
+				<div class="oggetto">
+					<!--						<div th:if="${libro.immagini != null and !libro.immagini.empty}">
+						    <div th:each="immagine : ${libro.immagini}">
+								img
+						        <img th:src="@{'/immagine/' + ${immagine.id}}" alt="Copertina di {{libro.titolo}}" class="libro-img"/>
+						    </div>
+						</div>
+-->
+					<div class="oggetto-dettagli">
+						<p><a class="titolo" th:href="@{'/libro/' + ${libro.id}}"
+								th:text="${libro.titolo} + ' (' + ${libro.anno} + ')'"> titolo e anno</a></p>
+						<hr>
+						<div th:if="${libro.immagini != null and !libro.immagini.empty}" class="oggetto-img">
+							<img th:src="@{'/immagine/' + ${libro.immagini[0].id}}" alt="Immagine 1" />
+							<!--					 <span class="tipo" th:if="${tipologia == 'prodotti'}" th:text="${prodotto.categoria}">categoria</span>
+-->
+						</div>
+					</div>
+			</li>
+		</ul>
+	</div>
+</body>
+
+</html>

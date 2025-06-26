@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Utenti</title>
+		<link rel="stylesheet" href="/stile_elenco.css"/>
+	</head>
+	<body>
+		<a id="logo" href="/"> <img src="/logo.png"> </a>
+
+		<div class="form-container">
+		<h1>Elenco utenti</h1>
+		<!-- Modulo di ordinamento -->
+			<form action="/admin/ordinaRecensioni" method="GET">
+				<label for="ordine">Ordina per:</label>
+					<select id="ordine" name="ordine">
+						<option value="username">Username</option>
+					</select>
+				<label for="tipoRicerca">Ricerca per:</label>
+					<select id="tipoRicerca" name="tipoRicerca">
+						<option value="ascendente">Ascendente</option>
+						<option value="discendente">Discendente</option>
+					</select>
+				<button type="submit">Ordina</button>
+			</form>
+		<span th:if="${utenti.isEmpty()}"></span>
+		</div>
+		<div id="lista">
+			<ul>
+				<li th:each="utente:${utenti}">
+					<h3 th:text="${utente.username}">Nome</h3> 
+						<p><a th:if="${utente.utente!=null}" class="visualizza" th:href="@{'/admin/utente/' + ${utente.utente.id}}"> Visualizza profilo</a>
+					</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

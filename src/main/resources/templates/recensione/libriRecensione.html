@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>LIBRI</title>
+	<link rel="stylesheet" href="/stile_elenco.css" />
+</head>
+
+<body>
+
+	<a id="logo" href="/recensione/recensioni"><img src="/logo.png" alt="Logo"></a>
+
+	<div class="form-container">
+		<form action="/recensione/cercaLibri" method="GET">
+			<label for="filtro">Cerca:</label>
+			<input type="text" id="filtro" placeholder="cosa cerchi?" name="filtro">
+
+			<!-- Menu a tendina per scegliere la tipologia di ricerca -->
+			<label for="tipoRicerca">Ricerca per:</label>
+			<select id="tipoRicerca" name="tipoRicerca">
+				<option value="titolo">Titolo libro</option>
+				<option value="nome">Nome autore</option>
+				<option value="cognome">Cognome autore</option>
+				<option value="nazione">Nazione autore</option>
+			</select>
+			<button type="submit">Cerca</button>
+		</form>
+
+		<span th:if="${numero}" th:text="'sono stati trovati ' + ${numero} + ' libri'"></span>
+
+		<!-- Mostra messaggio se la lista di libri è vuota -->
+		<h1 th:if="${!libri.isEmpty()}" th:text="'Elenco libri su cui puoi scrivere una recensione'"></h1>
+		<span th:if="${libri.isEmpty()}">No books available.</span>
+	</div>
+
+
+
+	<div id="lista">
+		<ul>
+			<li th:each="libro : ${libri}">
+				<div class="libro">
+					<div class="libro-dettagli">
+						<p><a class="titolo" th:href="@{'/recensione/new/' + ${libro.id}}"
+								th:text="${libro.titolo} + ' (' + ${libro.anno} + ')'"> titolo e anno</a></p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+
+</html>
