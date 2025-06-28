@@ -112,7 +112,7 @@ input[type="text"] {
 }
 
 
-/* Lista dei prodotti */
+/* Lista degli oggetti */
 #lista {
     margin-top: 30px; /* Margine superiore di 30px */
 	
@@ -207,7 +207,7 @@ input[type="text"] {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 	font-size: 1.3rem; /* Dimensione del font di 1.1rem */
 	font-weight: bolder; /* Testo in grassetto */
-} 
+}
 button { /* Seleziona gli elementi <button> all'interno di un elemento con id="turno" */
 	font-size: 1.3rem; /* Dimensione del font di 1.3rem */
 	padding: 5px 10px; /* Padding di 5px sopra/sotto, 10px sinistra/destra */

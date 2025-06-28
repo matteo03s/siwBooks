@@ -9,12 +9,12 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.model.Autore;
 import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.repository.LibroRepository;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Service
@@ -98,8 +98,10 @@ public class LibroService {
 		libroRepository.aggiungiAutoreLibro(libroId, autoreId);
 	}
 
+	@Transactional
 	public void rimuoviAutoreLibro(Long libroId, Long autoreId) {
 		libroRepository.rimuoviAutoreLibro(libroId, autoreId);
+		libroRepository.save(this.getLibroById(libroId));
 	}
 	
 	public void rimuoviRecensioneLibro(Long libroId, Long recensioneId) {
@@ -112,7 +114,7 @@ public class LibroService {
 		List <Libro> primo = new ArrayList<>();
 		List <Libro> temp = (List<Libro>)this.getAllLibri();
 		Collections.shuffle(temp);
-		primo.addAll(temp.subList(0, 5));		
+		primo.addAll(temp.subList(0, 4));		
 		return primo;
 	}
 	
@@ -140,8 +142,18 @@ public class LibroService {
 	public void removeLibro(@Valid Libro libro) {
 		libroRepository.delete(libro);	
 	}
+	@Transactional
 	public void removeLibroId (Long id) {
 		libroRepository.deleteById(id);
+	}
+
+	public void rimuoviAutoriLibro(Long id) {
+		libroRepository.rimuoviAutoriLibro(id);
+		Libro libro = this.getLibroById(id);
+		for (Autore a: libro.getAutori()) {
+			a.getLibri().remove(libro);
+		}
+		libro.getAutori().clear();
 	}
 	
 }

@@ -47,7 +47,7 @@ public class Autore {
     @OneToOne(fetch = FetchType.LAZY)
     private Immagine immagine;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Libro> libri;
 
 	public Long getId() {
@@ -137,8 +137,8 @@ public class Autore {
 	@Override
 	public String toString() {
 		return "Autore [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita
-				+ ", dataMorte=" + dataMorte + ", nazione=" + nazione + ", immagine=" + immagine + ", libri="
-				+ libri + "]";
+				+ ", dataMorte=" + dataMorte + ", nazione=" + nazione
+				+ "]";
 	}
 
 

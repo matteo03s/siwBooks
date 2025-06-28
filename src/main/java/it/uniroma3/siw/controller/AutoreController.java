@@ -50,6 +50,7 @@ public class AutoreController {
 		return "autore/autori.html";
 	}
 
+	@Transactional
 	@GetMapping ("/autore/{id}")
 	public String getAutore (@PathVariable("id") Long id, Model model) {
 		Autore a;

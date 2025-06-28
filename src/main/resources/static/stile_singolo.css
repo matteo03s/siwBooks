@@ -78,7 +78,8 @@ p {
 	max-width: 100%; /* Larghezza fissa per tutte le immagini */
 	    max-height: 300px; /* Altezza fissa uguale alla larghezza per ottenere un quadrato */
 	    margin-top: 20px; /* Mantieni il margine destro */
-	    border-radius: 10px; /* Mantieni gli angoli arrotondati */
+	    margin: 0 auto;
+		border-radius: 10px; /* Mantieni gli angoli arrotondati */
 	    display: block; /* Mantieni l'immagine come elemento a blocco */
 	    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore senza distorsioni */
 	    overflow: hidden; /* Nasconde eventuali parti dell'immagine che escono dal contenitore */

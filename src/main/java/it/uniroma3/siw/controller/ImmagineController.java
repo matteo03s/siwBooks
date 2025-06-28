@@ -34,59 +34,6 @@ public class ImmagineController {
     @Autowired
     private AutoreService autoreService;
 
-    /*
-    @Autowired
-    private LibroRepository libroRepository;
-
-    @Autowired
-    private AutoreRepository autoreRepository;
-
-    @GetMapping("/upload")
-    public String showUploadForm() {
-        return "upload.html";
-    }
-
-    @PostMapping("/upload")
-    @Transactional
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   @RequestParam("entityType") String entityType, // "libro" o "autore"
-                                   @RequestParam("entityId") Long entityId,
-                                   RedirectAttributes redirectAttributes) {
-        if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Seleziona un file da caricare.");
-            return "redirect:/upload";
-        }
-
-        try {
-            byte[] dati = file.getBytes();
-            String nomeFile = file.getOriginalFilename();
-            String tipoContenuto = file.getContentType();
-
-            Immagine immagine = new Immagine(nomeFile, tipoContenuto, dati, null, null);
-
-            if ("libro".equalsIgnoreCase(entityType)) {
-                Libro libro = libroRepository.findById(entityId)
-                    .orElseThrow(() -> new IllegalArgumentException("Libro non trovato"));
-                immagine.setLibro(libro);
-                libro.setImmagine(immagine);
-                libroRepository.save(libro);
-            } else if ("autore".equalsIgnoreCase(entityType)) {
-                Autore autore = autoreRepository.findById(entityId)
-                    .orElseThrow(() -> new IllegalArgumentException("Autore non trovato"));
-                immagine.setAutore(autore);
-                autore.setImmagine(immagine);
-                autoreRepository.save(autore);
-            } else {
-                throw new IllegalArgumentException("Tipo entità non valido");
-            }
-
-            redirectAttributes.addFlashAttribute("message", "Immagine caricata con successo per " + entityType + " ID: " + entityId);
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("message", "Errore durante il caricamento: " + e.getMessage());
-        }
-        return "redirect:/upload";
-    }
-    */
     @GetMapping("/libro/{libroId}/uploadImmagine")
     public String showUploadForm(@PathVariable("libroId") Long libroId, Model model) {
         Libro libro = libroService.getLibroById(libroId);
@@ -208,6 +155,7 @@ public class ImmagineController {
     	Libro libro = this.libroService.getLibroById(libroId);
     	Immagine img = this.immagineService.getImmagineById(immagineId);
     	libro.getImmagini().remove(img);
+    	this.libroService.saveLibro(libro);
     	this.immagineService.removeImmagine(immagineId);
 		return "redirect:/admin/modificaImmagineLibro/" + libroId;
 	}

@@ -11,6 +11,7 @@ import it.uniroma3.siw.model.Autore;
 import it.uniroma3.siw.model.Immagine;
 import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.repository.ImmagineRepository;
+import it.uniroma3.siw.repository.LibroRepository;
 
 
 @Service
@@ -18,6 +19,8 @@ public class ImmagineService {
 
     @Autowired
     private ImmagineRepository immagineRepository;
+    @Autowired
+    private LibroRepository libroRepository;
 
     @Transactional
     public Immagine saveImmagine(MultipartFile file) throws IOException {
@@ -46,7 +49,7 @@ public class ImmagineService {
         return null;
     }
     
-    @Transactional
+
     public Immagine saveImmagineLibro(MultipartFile file, Libro libro) throws IOException {
         if (file != null && !file.isEmpty()) {
             Immagine immagine = new Immagine();
@@ -55,7 +58,10 @@ public class ImmagineService {
             immagine.setDati(file.getBytes());
             
             libro.getImmagini().add(immagine);
-            return immagineRepository.save(immagine);
+            
+            libroRepository.save(libro);
+//            return immagineRepository.save(immagine);
+            return immagine;
         }
         return null;
     }
@@ -68,8 +74,9 @@ public class ImmagineService {
         return immagineRepository.findById(id).orElse(null);
     }
 
-    @Transactional
     public void removeImmagine(Long id) {
         immagineRepository.deleteById(id);
     }
+    
+    
 }

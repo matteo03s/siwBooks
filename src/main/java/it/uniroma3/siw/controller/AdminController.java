@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Autore;
 import it.uniroma3.siw.model.Credenziali;
+import it.uniroma3.siw.model.Immagine;
 import it.uniroma3.siw.model.Libro;
 import it.uniroma3.siw.model.Recensione;
 import it.uniroma3.siw.model.Utente;
@@ -25,6 +26,7 @@ import it.uniroma3.siw.repository.AutoreRepository;
 import it.uniroma3.siw.repository.LibroRepository;
 import it.uniroma3.siw.service.AutoreService;
 import it.uniroma3.siw.service.CredenzialiService;
+import it.uniroma3.siw.service.ImmagineService;
 import it.uniroma3.siw.service.LibroService;
 import it.uniroma3.siw.service.RecensioneService;
 import it.uniroma3.siw.service.UtenteService;
@@ -43,7 +45,8 @@ public class AdminController {
 	private UtenteService utenteService;
 	@Autowired
 	private CredenzialiService credenzialiService;
-	
+	@Autowired
+	private ImmagineService immagineService;
 
 /***********************************************************************************
  ***********************************SEZIONE LIBRO***********************************
@@ -57,8 +60,23 @@ public class AdminController {
 	}
 	
 	/* cancellazione di un libro */
+	
 	@GetMapping ("/admin/cancellaLibro/{id}")
 	public String cancellaLibro (@PathVariable ("id") Long id, Model model) {
+		Libro libro = this.libroService.getLibroById(id);
+
+		libro.getImmagini().clear();
+//		Set <Autore> autori = libro.getAutori();
+//		// Rimuovi il libro da ogni autore
+//        for (Autore autore : autori) {
+//        	this.libroService.rimuoviAutoreLibro(id, autore.getId());
+//        }
+        this.libroService.rimuoviAutoriLibro(id);
+//        this.libroService.saveLibro(libro);
+//		libro.getAutori().clear();
+ 
+        
+        libro.getRecensioni().clear();
 		this.libroService.removeLibroId(id);
 		return "redirect:/admin/modificaLibri";
 	}
@@ -192,6 +210,7 @@ public class AdminController {
     }
 	
 	/* pagina di modifica lista autori di un libro */
+	@Transactional
 	@GetMapping("/admin/modificaAutori/{id}")
 	public String updateActors(@PathVariable("id") Long id, Model model) {
 
@@ -357,6 +376,7 @@ public class AdminController {
 	}
 	
 	/* pagina di modifica lista libri di un autore */
+	@Transactional
 	@GetMapping("/admin/modificaLibri/{id}")
 	public String updateLibri(@PathVariable("id") Long id, Model model) {
 
@@ -421,14 +441,14 @@ public class AdminController {
 		this.recensioneService.removeRecensioneById(id);
 		return "redirect:/admin/recensioni";
 	}
-	
+	@Transactional
 	@GetMapping("/admin/recensioni/{id}") 
 	public String getRecensioniUtente (@PathVariable ("id") Long id,
 										Model model) {
 		Utente utente = utenteService.getUtente(id);
 		
-		model.addAttribute("recensioni", utente.getRecensioni());
-		return "/admin/recensioni.html";
+		model.addAttribute("recensioni", this.recensioneService.getRecensioniUsername(utente.getCredenziali().getUsername()));
+		return "admin/recensioni.html";
 	}
 	
 	

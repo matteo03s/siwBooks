@@ -170,10 +170,13 @@ a.titolo {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 	font-size: 1.3rem; /* Dimensione del font di 1.1rem */
 	font-weight: bolder; /* Testo in grassetto */
+	transition: background-color 0.3s ease, transform 0.2s ease; /* Aggiunge transizioni fluide per colore di sfondo e trasformazione */
+
 }
 
 a:hover {
-    color: #b2724f; /* Colore verde scuro al passaggio del mouse */
+	transform: scale(1.05); /* Ingrandisce il bottone del 10% al passaggio del mouse */
+	color: #b2724f; /* Colore verde scuro al passaggio del mouse */
 }
 
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,13 +43,13 @@ public class Libro {
 
 	private String trama;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL , orphanRemoval = true)
     private List<Immagine> immagini;
 
-    @ManyToMany(mappedBy = "libri")
+    @ManyToMany(mappedBy = "libri", fetch = FetchType.EAGER)
     private Set<Autore> autori;
 
-    @OneToMany(mappedBy = "libro")
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Recensione> recensioni;
 
 	public Long getId() {
@@ -128,8 +129,8 @@ public class Libro {
 
 	@Override
 	public String toString() {
-		return "Libro [id=" + id + ", titolo=" + titolo + ", anno=" + anno + ", trama=" + trama + ", immagini=" + immagini
-				+ ", autori=" + autori + ", recensioni=" + recensioni + "]";
+		return "Libro [id=" + id + ", titolo=" + titolo + ", anno=" + anno + ", trama=" + trama
+				+ ", recensioni=" + recensioni + "]";
 	}
 
 }

@@ -29,5 +29,6 @@ public interface RecensioneRepository extends CrudRepository <Recensione, Long> 
 
 	public List <Recensione> findByUtenteCredenzialiUsername (String username);
 	public List <Recensione> findByUtenteEmail(String email);
+	public void deleteByLibroId(Long id);
 
 }

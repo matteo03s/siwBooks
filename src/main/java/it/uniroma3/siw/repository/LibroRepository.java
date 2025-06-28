@@ -56,5 +56,9 @@ public interface LibroRepository extends CrudRepository <Libro, Long>{
 	@Transactional
 	@Query(value = "DELETE FROM autore_libri WHERE libri_id = :libroId AND autori_id = :autoreId", nativeQuery = true)
 	void rimuoviRecensioneLibro(@Param("libroId") Long libroId, @Param("autoreId") Long autoreId);
-	
+
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM autore_libri WHERE libri_id = :id", nativeQuery = true)
+	void rimuoviAutoriLibro(@Param("id") Long id);	
 }

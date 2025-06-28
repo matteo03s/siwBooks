@@ -3,6 +3,8 @@ package it.uniroma3.siw.model;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -77,6 +79,7 @@ public class Utente {
 	public void setNumeroTelefonico(String numeroTelefonico) {
 		this.numeroTelefonico = numeroTelefonico;
 	}
+
 
 	public List<Recensione> getRecensioni() {
 		return recensioni;

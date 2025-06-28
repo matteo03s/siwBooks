@@ -45,11 +45,11 @@
 				<div class="carousel-track">
 					<th:block th:each="libro: ${libri}">
 						<div th:if="${libro.immagini != null and !libro.immagini.empty}" class="oggetto-img">
-							<figure>
+							<a class="titolo" th:href="@{'/libro/' + ${libro.id}}"><figure>
 								<img th:src="@{'/immagine/' + ${libro.immagini[0].id}}"
 									alt="Copertina di {{libro.titolo}}" />
-								<figcaption><a class="titolo" th:href="@{'/libro/' + ${libro.id}}"
-										th:text="${libro.titolo}"></figcaption>
+								<figcaption
+										th:text="${libro.titolo}"></figcaption></a>
 							</figure>
 						</div>
 					</th:block>
@@ -61,11 +61,11 @@
 				<div class="carousel-track">
 					<th:block th:each="autore: ${autori}">
 						<div th:if="${autore.immagine != null}" class="oggetto-img">
-							<figure>
+							<a class="titolo" th:href="@{'/autore/' + ${autore.id}}"><figure>
 								<img th:src="@{/immagine/{id}(id=${autore.immagine.id})}"
 									alt="Foto di {{autore.nome}}" />
-								<figcaption><a class="titolo" th:href="@{'/autore/' + ${autore.id}}"
-										th:text="${autore.nome} + ' ' + ${autore.cognome}"></a></figcaption>
+								<figcaption
+										th:text="${autore.nome} + ' ' + ${autore.cognome}"></figcaption></a>
 							</figure>
 						</div>
 					</th:block>
